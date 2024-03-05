@@ -1,0 +1,67 @@
+@use '../../sass/variables' as *;
+
+.delete {
+  height: 110vh;
+  background-color: $background;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    margin: auto;
+    background-color: $white;
+    border-radius: 10px;
+  }
+    &__phrase-one {
+      color: $black;
+      font-size: 2.188rem;
+      font-weight: 600;
+      margin-top: 4.375rem;
+    }
+
+    &__phrase-two {
+      color: $black;
+      font-size: 1.563rem;
+      font-weight: 400;
+      margin-top: 3.438rem;
+    }
+
+    &__btns {
+      display: flex;
+      gap: 1.25rem;
+      margin-top: 5.313rem;
+      margin-bottom: 4.813rem;
+    }
+
+    button {
+      cursor: pointer;
+      transition-duration: 200ms;
+    }
+
+    button:hover {
+      filter: brightness(1.1);
+      transform: scale(1.05);
+      transition-duration: 200ms;
+    }
+
+    &__no-btn {
+      background: $button-color;
+      color: $white;
+      border: none;
+      border-radius: 10px;
+      padding: 1rem 5.6rem;
+      font-size: 1.875rem;
+      font-weight: 600;
+    }
+
+    &__yes-btn {
+      background: none;
+      color: $background;
+      border: 1px solid $black;
+      border-radius: 10px;
+      padding: 1rem 5.6rem;
+      font-size: 1.875rem;
+      font-weight: 600;
+    }
+}
