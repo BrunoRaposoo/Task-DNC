@@ -3,14 +3,14 @@ import './index.scss'
 import { Header } from "../../components/Header/Header";
 import { Message } from "../../components/Message/Message";
 import { useState } from 'react';
-import edit from '../../assets/edit.svg'
-import remove from '../../assets/remove.svg'
 import { Link } from 'react-router-dom';
 import { Jobs } from '../../components/Jobs/Jobs';
+import { Check, Pencil, Trash } from '@phosphor-icons/react';
 
 export function Tasks({ data }) {
   const [tasks, setTasks] = useState([])
   const [newTask, setNewTask] = useState('')
+  const [isDone, setIsDone] = useState(false)
 
   const handleNewTask = (event) => {
     setNewTask(event.target.value)
@@ -22,6 +22,10 @@ export function Tasks({ data }) {
       setTasks(prevTasks => [...prevTasks, newTask])
       setNewTask('')
     }
+  }
+
+  const taskDone = () => {
+    setIsDone(!isDone)
   }
 
   return (
@@ -43,17 +47,17 @@ export function Tasks({ data }) {
             
             {tasks.map((task) => (
                <div key={task.id} className="tasks__item">
-                <p>{task}</p>
+                <p className={isDone ? "SelectedTaskText" : "Tasktext"}>{task}</p>
                 <div className="btn">
-                  <input type="checkbox" name="" id="" />
+                <button className={isDone ? "checked" : "check" } onClick={taskDone}> {isDone ? <Check size={18} weight="bold" color="#F9D1D1"/> : null }  </button>
                   <Link to={`/edit/${task.id}`}>
-                    <button>
-                      <img src={edit} alt="Editar" />
+                    <button className='editTask'>
+                      <Pencil size={30} />
                     </button>
                   </Link>
                   <Link to={`/delete/${task.id}`}>
-                    <button>
-                      <img src={remove} alt="" />
+                    <button className='deleteTask'>
+                      <Trash size={30} />
                     </button>
                   </Link>
                 </div>

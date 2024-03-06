@@ -1,24 +1,31 @@
 /* eslint-disable no-undef */
 import { Link } from "react-router-dom";
-import edit from '../../assets/edit.svg'
-import remove from '../../assets/remove.svg'
+import { Check } from "@phosphor-icons/react/dist/ssr";
+import { useState } from "react";
+import { Pencil, Trash } from "@phosphor-icons/react";
 
 
 /* eslint-disable react/prop-types */
 export function Jobs({ data }) {
+  const [isDone, setIsDone] = useState(false)
+
+  const taskDone = () => {
+    setIsDone(!isDone)
+  }
+
   return (
     <div key={data.id} className="tasks__item">
-    <p>{data.task}</p>
+    <p className={isDone ? "SelectedTaskText" : "Tasktext"}>{data.task}</p>
     <div className="btn">
-      <input type="checkbox" name="" id="" />
+      <button className={isDone ? "checked" : "check" } onClick={taskDone}> {isDone ? <Check size={18} weight="bold" color="#F9D1D1"/> : null }  </button>
       <Link to={`/edit/${data.id}`}>
-        <button>
-          <img src={edit} alt="Editar" />
+        <button className='editTask'>
+          <Pencil size={30} />
         </button>
       </Link>
       <Link to={`/delete/${data.id}`}>
-        <button>
-          <img src={remove} alt="" />
+        <button className='deleteTask'>
+          <Trash size={30} />
         </button>
       </Link>
     </div>
