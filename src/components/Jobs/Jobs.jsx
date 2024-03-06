@@ -12,7 +12,7 @@ export function Jobs({ data }) {
   const taskDone = () => {
     setIsDone(!isDone)
   }
-
+  
   return (
     <div key={data.id} className="tasks__item">
     <p className={isDone ? "SelectedTaskText" : "Tasktext"}>{data.task}</p>

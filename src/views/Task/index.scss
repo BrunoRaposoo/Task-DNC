@@ -86,12 +86,16 @@
       color: $white;
     }
 
+    .check:hover {
+      border: 2px solid #b8b8b8;
+    }
+
     .checked {
       display: flex;
       align-items: center;
       justify-content: center;
       transform: translateX(-14.8rem);
-      border: 2px solid #F9D1D1;
+      background-color: #ff6868;
       border-radius: 4px;
       height: 1.125rem;
       width: 1.125rem;
@@ -128,6 +132,9 @@
     
     form {
       display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 1rem;
       width: 100%;
       padding: 0 1.875rem;
     }
@@ -140,7 +147,7 @@
       align-items: center;
       justify-content: space-between;
 
-      padding: 0.1rem 0;
+      padding: 0.1rem 1rem;
       border: none;
       background: none;
 
@@ -159,16 +166,25 @@
     }
 
     .btn2 {
-      background: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 1rem 3rem;
+      gap: 1rem;
+      background: #424242;
       border: none;
-      font-size: 2.375rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 800;
       color: $white;
       cursor: pointer;
       transition-duration: 200ms;
     }
 
     .btn2:hover {
-      transform: scale(1.5);
+      background-color: #666565;
+      transform: scale(1.1);
       transition-duration: 200ms;
     }
   }

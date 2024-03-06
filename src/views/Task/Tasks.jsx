@@ -5,7 +5,7 @@ import { Message } from "../../components/Message/Message";
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Jobs } from '../../components/Jobs/Jobs';
-import { Check, Pencil, Trash } from '@phosphor-icons/react';
+import { Check, Pencil, PlusCircle, Trash } from '@phosphor-icons/react';
 
 export function Tasks({ data }) {
   const [tasks, setTasks] = useState([])
@@ -26,6 +26,19 @@ export function Tasks({ data }) {
 
   const taskDone = () => {
     setIsDone(!isDone)
+  }
+
+  function handleCreateNewTask(event) {
+    event.preventDefault();
+    addNewTask(event)
+  }
+
+  function handleNewTaskKeyDown(event) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      event.stopPropagation();
+      addNewTask(event);
+    }
   }
 
   return (
@@ -49,7 +62,12 @@ export function Tasks({ data }) {
                <div key={task.id} className="tasks__item">
                 <p className={isDone ? "SelectedTaskText" : "Tasktext"}>{task}</p>
                 <div className="btn">
-                <button className={isDone ? "checked" : "check" } onClick={taskDone}> {isDone ? <Check size={18} weight="bold" color="#F9D1D1"/> : null }  </button>
+                <button 
+                  className={isDone ? "checked" : "check" } 
+                  onClick={taskDone}
+                > 
+                  {isDone ? <Check size={18} weight={"bold"} color="#F9D1D1"/> : null }
+                </button>
                   <Link to={`/edit/${task.id}`}>
                     <button className='editTask'>
                       <Pencil size={30} />
@@ -69,10 +87,20 @@ export function Tasks({ data }) {
 
 
         <div className="tasks__addTask">
-          <form action="">
-            <textarea name="" id="" cols="30" rows="10" placeholder='Nova tarefa...' value={newTask} onChange={handleNewTask}></textarea>
-            <button className='btn2' onClick={addNewTask}>
-              +
+          <form onSubmit={handleCreateNewTask}>
+            <textarea name="" id="" cols="30" rows="10" 
+              placeholder='Nova tarefa...' 
+              value={newTask} 
+              onChange={handleNewTask} 
+              onKeyDown={handleNewTaskKeyDown}>
+            </textarea>
+            <button 
+              type='submit' 
+              className='btn2' 
+              onClick={addNewTask}
+            >
+              Criar <PlusCircle 
+            />
             </button>
           </form>
         </div>
